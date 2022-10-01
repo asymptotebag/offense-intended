@@ -10,6 +10,12 @@ const insultNouns = ['doorknob', 'aberration', 'abomination', 'barbarian', 'cann
 
 const insultAdjectives = ['antiquated', 'asinine', 'banal', 'brazen', 'catty', 'churlish', 'clammy', 'contrary', 'daft', 'damned', 'deceitful', 'decrepit', 'deficient', 'degrading', 'deleterious', 'devoid', 'dim', 'dismal', 'disreputable', 'dopey', 'dreary', 'drunken', 'dubious', 'dysfunctional', 'fatuous', 'feckless', 'glib', 'grotesque', 'imbecilic', 'impertinent', 'indecorous', 'indiscreet', 'infantile', 'jejune', 'lurid', 'malevolent', 'misshapen', 'morbid', 'moribund', 'mundane', 'petulant', 'puerile', 'rambunctious', 'repugnant', 'truculent', 'unkempt', 'vainglorious', 'vapid'];
 
+function getDefinition(word) {
+  let def = fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+    .then((response) => response.json())
+    .then((data) => console.log(data[0]["meanings"][0]["definitions"][0]["definition"]));
+}
+
 if (!String.prototype.format) {
   String.prototype.format = function () {
     var args = arguments;
@@ -22,8 +28,14 @@ if (!String.prototype.format) {
   };
 }
 
-const insult = insultTemplates[Math.floor(Math.random() * insultTemplates.length)].format(insultAdjectives[Math.floor(Math.random() * insultAdjectives.length)], insultNouns[Math.floor(Math.random() * insultNouns.length)])
+const template = insultTemplates[Math.floor(Math.random() * insultTemplates.length)];
+const adj = insultAdjectives[Math.floor(Math.random() * insultAdjectives.length)];
+const noun = insultNouns[Math.floor(Math.random() * insultNouns.length)];
 
+const insult = template.format(adj, noun);
+
+getDefinition(adj);
+getDefinition(noun);
 
 const Newtab = () => {
   return (
