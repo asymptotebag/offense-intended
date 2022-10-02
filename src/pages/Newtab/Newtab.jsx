@@ -6,7 +6,15 @@ import { useEffect } from 'react';
 
 const backgroundColors = ['#BD9EA8', '#B49082', '#4D243D', '#3C6E71', '#6796A2', '#A26769', '#383B56', '#95BBDB', '#A5C482', '#B8B18E'];
 
-const insultTemplates = ['you are such a {0} {1}'];
+const insultTemplates = ['you are a {0} {1}',
+                         'you\'re such a {0} {1}',
+                         'you are nothing but a {0} {1}',
+                         'you are nothing if not a {0} {1}',
+                         'what a {0} {1} you are!',
+                         'never have I met a {1} as {0} as you',
+                         'not only are you a {1}, but you\'re a {0} {1} at that!',
+                         'hey! how\'s this {0} {1} doing?',
+                         'how {0} can a {1} even be?!',];
 
 const insultNouns = ['doorknob', 'aberration', 'abomination', 'barbarian', 'cannibal', 'cretin', 'cesspool', 'degenerate', 'delinquent', 'derelict', 'dolt', 'dullard', 'dunce', 'fiend', 'filcher', 'glutton', 'half-wit', 'heathen', 'idiot', 'ignoramus', 'imbecile', 'lackey', 'lecher', 'libertine', 'loafer', 'lout', 'malefactor', 'miscreant', 'misdemeanant', 'narcissist', 'neanderthal', 'nincompoop', 'oaf', 'onanist', 'parasite', 'peon', 'plebeian', 'polisson', 'rapscallion', 'reprobate', 'reprobate', 'ruffian', 'scoundrel', 'simpleton', 'slattern', 'sphincter', 'sycophant', 'sycophant', 'troglodyte', 'trollop', 'twerp', 'varmint', 'vermin', 'wretch'];
 
@@ -19,7 +27,7 @@ async function getDefinition(word) {
     .catch(() => "No definition found");
 }
 
-function shadowColor(col, amt) {
+function changeShade(col, amt) {
   var usePound = false;
   if (col[0] == "#") {
     col = col.slice(1);
@@ -76,14 +84,14 @@ const Newtab = () => {
         setDefs((defs) => ({ ...defs, [x]: data }));
       }));
   }, []);
-
+  
   return (
     <div className='App'>
-      <header className='App-header' style={{ 'backgroundColor': backgroundColor }}>
+      <header className='App-header' style={{ background: `linear-gradient(45deg, ${changeShade(backgroundColor, -10)} 0%, ${changeShade(backgroundColor, 30)} 100%)` }}>
         <div style={{ "display": "flex", "flexDirection": "row" }}>
           {
             insult.map((word) => (
-              <p data-tip={defs[word]} key={word} style={{ "textShadow": `3px 4px ${shadowColor(backgroundColor,  -40)}` }}>
+              <p data-tip={defs[word]} key={word} style={{ "textShadow": `3px 4px ${changeShade(backgroundColor,  -30)}` }}>
                 {word}{' '}
               </p>
             ))
