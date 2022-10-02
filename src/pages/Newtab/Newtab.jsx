@@ -1,8 +1,10 @@
 import React from 'react';
 import './Newtab.css';
 import './Newtab.scss';
+import ReactTooltip from 'react-tooltip';
+import { useEffect } from 'react';
 
-const backgroundColors = ['#BD9EA8','#B49082','#4D243D','#3C6E71','#6796A2','#A26769','#383B56','#95BBDB','#A5C482','#B8B18E'];
+const backgroundColors = ['#BD9EA8', '#B49082', '#4D243D', '#3C6E71', '#6796A2', '#A26769', '#383B56', '#95BBDB', '#A5C482', '#B8B18E'];
 
 const insultTemplates = ['you are such a {0} {1}'];
 
@@ -10,10 +12,11 @@ const insultNouns = ['doorknob', 'aberration', 'abomination', 'barbarian', 'cann
 
 const insultAdjectives = ['antiquated', 'asinine', 'banal', 'brazen', 'catty', 'churlish', 'clammy', 'contrary', 'daft', 'damned', 'deceitful', 'decrepit', 'deficient', 'degrading', 'deleterious', 'devoid', 'dim', 'dismal', 'disreputable', 'dopey', 'dreary', 'drunken', 'dubious', 'dysfunctional', 'fatuous', 'feckless', 'glib', 'grotesque', 'imbecilic', 'impertinent', 'indecorous', 'indiscreet', 'infantile', 'jejune', 'lurid', 'malevolent', 'misshapen', 'morbid', 'moribund', 'mundane', 'petulant', 'puerile', 'rambunctious', 'repugnant', 'truculent', 'unkempt', 'vainglorious', 'vapid'];
 
-function getDefinition(word) {
-  let def = fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+async function getDefinition(word) {
+  return await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
     .then((response) => response.json())
-    .then((data) => console.log(data[0]["meanings"][0]["definitions"][0]["definition"]));
+    .then((data) => data[0]["meanings"][0]["definitions"][0]["definition"])
+    .catch(() => "No definition found");
 }
 
 if (!String.prototype.format) {
@@ -32,18 +35,34 @@ const template = insultTemplates[Math.floor(Math.random() * insultTemplates.leng
 const adj = insultAdjectives[Math.floor(Math.random() * insultAdjectives.length)];
 const noun = insultNouns[Math.floor(Math.random() * insultNouns.length)];
 
-const insult = template.format(adj, noun);
-
-getDefinition(adj);
-getDefinition(noun);
+const insult = template.format(adj, noun).split(' ');
 
 const Newtab = () => {
+  const [defs, setDefs] = React.useState(Object.fromEntries(insult.map((t) => [t, ""])));
+
+  useEffect(() => {
+    // Reload if spacebar is pressed
+    window.addEventListener("keydown", ({key}) => { key == " " ? window.location.reload() : null });
+    // Load definitions for adj and noun
+    [adj, noun].map(x => getDefinition(x).then
+      ((data) => {
+        setDefs((defs) => ({ ...defs, [x]: data }));
+      }));
+  }, []);
+
   return (
     <div className='App'>
       <header className='App-header' style={{ 'backgroundColor': backgroundColors[Math.floor(Math.random() * backgroundColors.length)] }}>
-        <p>
-          {insult}
-        </p>
+        <div style={{ "display": "flex", "flexDirection": "row" }}>
+          {
+            insult.map((word) => (
+              <p data-tip={defs[word]} key={word} >
+                {word}{' '}
+              </p>
+            ))
+          }
+        </div>
+        <ReactTooltip place='bottom' />
       </header>
     </div>
   );
