@@ -83,7 +83,7 @@ const Newtab = () => {
         <div style={{ "display": "flex", "flexDirection": "row" }}>
           {
             insult.map((word) => (
-              <p data-tip={defs[word]} key={word} style={{ "text-shadow": `3px 4px ${shadowColor(backgroundColor,  -40)}` }}>
+              <p data-tip={defs[word]} key={word} style={{ "textShadow": `3px 4px ${shadowColor(backgroundColor,  -40)}` }}>
                 {word}{' '}
               </p>
             ))
