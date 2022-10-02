@@ -34,7 +34,7 @@ if (!String.prototype.format) {
 const template = insultTemplates[Math.floor(Math.random() * insultTemplates.length)];
 const adj = insultAdjectives[Math.floor(Math.random() * insultAdjectives.length)];
 const noun = insultNouns[Math.floor(Math.random() * insultNouns.length)];
-
+const backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
 const insult = template.format(adj, noun).split(' ');
 
 const Newtab = () => {
@@ -42,7 +42,7 @@ const Newtab = () => {
 
   useEffect(() => {
     // Reload if spacebar is pressed
-    window.addEventListener("keydown", ({key}) => { key == " " ? window.location.reload() : null });
+    window.addEventListener("keydown", ({ key }) => { key == " " ? window.location.reload() : null });
     // Load definitions for adj and noun
     [adj, noun].map(x => getDefinition(x).then
       ((data) => {
@@ -52,7 +52,7 @@ const Newtab = () => {
 
   return (
     <div className='App'>
-      <header className='App-header' style={{ 'backgroundColor': backgroundColors[Math.floor(Math.random() * backgroundColors.length)] }}>
+      <header className='App-header' style={{ 'backgroundColor': backgroundColor }}>
         <div style={{ "display": "flex", "flexDirection": "row" }}>
           {
             insult.map((word) => (
