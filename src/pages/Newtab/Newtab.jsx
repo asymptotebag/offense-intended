@@ -58,7 +58,7 @@ const insultTemplates = [
   'not only are you a {1}, but you\'re a {0} {1} at that!',
   'hey! how\'s this {0} {1} doing?',
   'how {0} can a {1} even be?!',
-  'achoo! sorry, i\'m allergic to {0} {1}s',
+  'achoo! ah, there must be a {0} {1} nearby',
   'look! there goes that {0} {1} again',
   'if only you weren\'t such a {0} {1}...',
   'how do you live with as {0} a {1} as yourself?',
