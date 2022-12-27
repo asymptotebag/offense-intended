@@ -36218,6 +36218,10 @@ function changeShade(col, amt) {
   return (usePound ? "#" : "") + (g | b << 8 | r << 16).toString(16);
 }
 
+function stripPunctuation(s) {
+  return s.replace(/[!?.,()'"]/g, "");
+}
+
 if (!String.prototype.format) {
   String.prototype.format = function () {
     var args = arguments;
@@ -36235,7 +36239,7 @@ var insult = template.format(adj, noun).split(' ');
 
 var Newtab = function Newtab() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(Object.fromEntries(insult.map(function (t) {
-    return [t, ""];
+    return [stripPunctuation(t), ""];
   }))),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       defs = _React$useState2[0],
@@ -36270,7 +36274,7 @@ var Newtab = function Newtab() {
     }
   }, insult.map(function (word) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-      "data-tip": defs[word],
+      "data-tip": defs[stripPunctuation(word)],
       key: word,
       style: {
         "textShadow": "3px 4px ".concat(changeShade(backgroundColor, -30))
@@ -39280,7 +39284,7 @@ module.exports.formatError = function (err) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("78aa0ab4446565adf2db")
+/******/ 		__webpack_require__.h = () => ("49464b8ca3a91f66d63b")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

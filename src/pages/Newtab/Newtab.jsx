@@ -107,6 +107,10 @@ function changeShade(col, amt) {
   return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
 }
 
+function stripPunctuation(s) {
+  return s.replace(/[!?.,()'"]/g, "");
+}
+
 if (!String.prototype.format) {
   String.prototype.format = function () {
     var args = arguments;
@@ -126,7 +130,7 @@ const backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundCo
 const insult = template.format(adj, noun).split(' ');
 
 const Newtab = () => {
-  const [defs, setDefs] = React.useState(Object.fromEntries(insult.map((t) => [t, ""])));
+  const [defs, setDefs] = React.useState(Object.fromEntries(insult.map((t) => [stripPunctuation(t), ""])));
 
   useEffect(() => {
     // Reload if spacebar is pressed
@@ -144,7 +148,7 @@ const Newtab = () => {
         <div style={{ "display": "flex", "flexDirection": "row" }}>
           {
             insult.map((word) => (
-              <p data-tip={defs[word]} key={word} style={{ "textShadow": `3px 4px ${changeShade(backgroundColor,  -30)}` }}>
+              <p data-tip={defs[stripPunctuation(word)]} key={word} style={{ "textShadow": `3px 4px ${changeShade(backgroundColor,  -30)}` }}>
                 {word}{' '}
               </p>
             ))
