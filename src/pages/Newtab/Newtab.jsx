@@ -77,7 +77,7 @@ async function getDefinition(word) {
   return await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
     .then((response) => response.json())
     .then((data) => data[0]["meanings"][0]["definitions"][0]["definition"])
-    .catch(() => "No definition found");
+    .catch(() => "this word is too advanced for our dictionary :(");
 }
 
 function changeShade(col, amt) {

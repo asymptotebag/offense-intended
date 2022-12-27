@@ -36184,7 +36184,7 @@ function _getDefinition() {
             }).then(function (data) {
               return data[0]["meanings"][0]["definitions"][0]["definition"];
             })["catch"](function () {
-              return "No definition found";
+              return "this word is too advanced for our dictionary :(";
             });
 
           case 2:
@@ -39280,7 +39280,7 @@ module.exports.formatError = function (err) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("5745a007ca980be743b3")
+/******/ 		__webpack_require__.h = () => ("78aa0ab4446565adf2db")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
