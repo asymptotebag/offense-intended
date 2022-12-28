@@ -154,10 +154,10 @@ const Newtab = () => {
   return (
     <div className='App'>
       <header className='App-header' style={{ background: `linear-gradient(45deg, ${changeShade(backgroundColor, -10)} 0%, ${changeShade(backgroundColor, 15)} 100%)` }}>
-        <div style={{ "display": "flex", "flexDirection": "row" }}>
+        <div style={{ "display": "flex", "flexDirection": "row", "flexWrap": "wrap", justifyContent: "center" }}>
           {
             insult.map((word) => (
-              <p data-tip={defs[stripPunctuation(word)]} key={word} style={{ "textShadow": `3px 4px ${changeShade(backgroundColor,  -30)}` }}>
+              <p data-tip={defs[stripPunctuation(word)]} key={word} style={{ "textShadow": `3px 4px ${changeShade(backgroundColor,  -30)}`, margin: "1px" }}>
                 {word}{' '}
               </p>
             ))
