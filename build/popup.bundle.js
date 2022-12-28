@@ -36262,7 +36262,18 @@ var template = insultTemplates[Math.floor(Math.random() * insultTemplates.length
 var adj = insultAdjectives[Math.floor(Math.random() * insultAdjectives.length)];
 var noun = insultNouns[Math.floor(Math.random() * insultNouns.length)];
 var backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
-var insult = template.format(adj, noun).split(' ');
+var insult = template.format(adj, noun).split(' '); // Fix a vs. an
+
+var vowels = ['a', 'e', 'i', 'o', 'u'];
+
+if (insult.includes('a')) {
+  var articleIdx = insult.indexOf('a');
+
+  if (vowels.includes(insult[articleIdx + 1][0])) {
+    // if the word after the article starts with a vowel
+    insult[articleIdx] = 'an';
+  }
+}
 
 var Newtab = function Newtab() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(Object.fromEntries(insult.map(function (t) {
@@ -39461,7 +39472,7 @@ module.exports.formatError = function (err) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("18b49e3247adbd0016b7")
+/******/ 		__webpack_require__.h = () => ("ca9692af34882d8eec04")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

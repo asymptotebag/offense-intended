@@ -129,6 +129,15 @@ const noun = insultNouns[Math.floor(Math.random() * insultNouns.length)];
 const backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
 const insult = template.format(adj, noun).split(' ');
 
+// Fix a vs. an
+const vowels = ['a', 'e', 'i', 'o', 'u'];
+if (insult.includes('a')) {
+  const articleIdx = insult.indexOf('a');
+  if (vowels.includes(insult[articleIdx+1][0])) {  // if the word after the article starts with a vowel
+    insult[articleIdx] = 'an';
+  }
+}
+
 const Newtab = () => {
   const [defs, setDefs] = React.useState(Object.fromEntries(insult.map((t) => [stripPunctuation(t), ""])));
 
