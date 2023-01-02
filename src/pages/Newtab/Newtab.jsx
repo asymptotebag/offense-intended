@@ -54,7 +54,8 @@ const insultTemplates = [
   'you are nothing but a {0} {1}',
   'you are nothing if not a {0} {1}',
   'what a {0} {1} you are!',
-  'never have I met a {1} as {0} as you',
+  'never have I met a {1} more {0} than you',
+  'never have I met as {0} a {1} as you',
   'not only are you a {1}, but you\'re a {0} {1} at that!',
   'hey! how\'s this {0} {1} doing?',
   'how {0} can a {1} even be?!',
@@ -67,11 +68,49 @@ const insultTemplates = [
   'wow, it\'s possible to be both {0} and a {1}?',
   'your face is on the wikipedia article for \"{0} {1}\"',
   'what\'s it like being such a {0} {1}?',
+  'where can I learn to be a {0} {1} just like you?',
+  'I never knew a {0} {1} \'til I met you',
+  'a {0} {1} like you belongs in an exhibit',
+  'being a {0} {1} sure runs in your family',
+  'you were born a {1}, but being {0} was your choice',
+  'you were born {0}, but being a {1} was all you',
+  'every day you wake up and choose to be a {0} {1}',
+  'how can you stand being such a {0} {1}?',
+  'and here we see the {0} {1} opening another tab...',
+  'get out, you {0} {1}!',
 ];
 
-const insultNouns = ['doorknob', 'aberration', 'abomination', 'barbarian', 'cannibal', 'cretin', 'cesspool', 'degenerate', 'delinquent', 'derelict', 'dolt', 'dullard', 'dunce', 'fiend', 'filcher', 'glutton', 'half-wit', 'heathen', 'idiot', 'ignoramus', 'imbecile', 'lackey', 'lecher', 'libertine', 'loafer', 'lout', 'malefactor', 'miscreant', 'misdemeanant', 'narcissist', 'neanderthal', 'nincompoop', 'oaf', 'onanist', 'parasite', 'peon', 'plebeian', 'polisson', 'rapscallion', 'reprobate', 'reprobate', 'ruffian', 'scoundrel', 'simpleton', 'slattern', 'sphincter', 'sycophant', 'sycophant', 'troglodyte', 'trollop', 'twerp', 'varmint', 'vermin', 'wretch', 'bitch', 'coward', 'dunce', 'bonehead', 'jackass', 'dingbat', 'dork', 'pansy', 'smatchet', 'blighter', 'dandiprat', 'stinkard', 'stinker', 'fustilugs', 'prickmedainty', 'ultracrepidarian', 'flibbertigibbet', 'epistemophiliac', 'knipperdolling', 'sloven', 'slob', 'dodunk', 'mumchance', 'draffsack', 'gormandizer', 'dunderhead', 'blinkard', 'huckster'];
+const insultNouns = [
+  'doorknob', 'aberration', 'abomination', 'barbarian', 'cannibal', 'cretin', 'cesspool', 'degenerate', 'delinquent', 'derelict',
+  'dolt', 'dullard', 'dunce', 'fiend', 'filcher', 'glutton', 'half-wit', 'heathen', 'idiot', 'ignoramus', 'imbecile', 'lackey',
+  'lecher', 'libertine', 'loafer', 'lout', 'malefactor', 'miscreant', 'misdemeanant', 'narcissist', 'neanderthal', 'nincompoop',
+  'oaf', 'onanist', 'parasite', 'peon', 'plebeian', 'polisson', 'rapscallion', 'reprobate', 'ruffian', 'scoundrel', 'simpleton',
+  'slattern', 'sphincter', 'sycophant', 'troglodyte', 'trollop', 'twerp', 'varmint', 'vermin', 'wretch', 'bitch', 'coward', 'dunce',
+  'bonehead', 'jackass', 'dingbat', 'dork', 'pansy', 'smatchet', 'blighter', 'dandiprat', 'stinkard', 'stinker', 'fustilugs',
+  'prickmedainty', 'ultracrepidarian', 'flibbertigibbet', 'epistemophiliac', 'knipperdolling', 'sloven', 'slob', 'dodunk',
+  'mumchance', 'draffsack', 'gormandizer', 'dunderhead', 'blinkard', 'huckster', 'hypocrite', 'phony', 'bluenose', 'humbug',
+  'impostor', 'muttonhead', 'clodpoll', 'dumbbell', 'blockhead', 'tomfool', 'jailbird', 'sinner', 'brigand', 'desperado', 'swindler',
+  'fraudster', 'racketeer', 'charlatan', 'hoodlum', 'hooligan', 'good-for-nothing', 'crook', 'con', 'scum', 'scumbag', 'swine',
+  'knave', 'vandal', 'yob', 'yobbo', 'chav', 'luddite'
+];
 
-const insultAdjectives = ['antiquated', 'asinine', 'banal', 'brazen', 'catty', 'churlish', 'clammy', 'contrary', 'daft', 'damned', 'deceitful', 'decrepit', 'deficient', 'degrading', 'deleterious', 'devoid', 'dim', 'dismal', 'disreputable', 'dopey', 'dreary', 'drunken', 'dubious', 'dysfunctional', 'fatuous', 'feckless', 'glib', 'grotesque', 'imbecilic', 'impertinent', 'indecorous', 'indiscreet', 'infantile', 'jejune', 'lurid', 'malevolent', 'misshapen', 'morbid', 'moribund', 'mundane', 'petulant', 'puerile', 'rambunctious', 'repugnant', 'truculent', 'unkempt', 'vainglorious', 'vapid', 'clingy', 'bitchy', 'thoughtless', 'callous', 'vain', 'patronizing', 'aloof', 'domineering', 'machiavellian', 'obstinate', 'cantankerous', 'big-headed', 'stubborn', 'tactless', 'possessive', 'resentful', 'cowardly', 'gullible', 'weak', 'weak-willed', 'sullen', 'touchy', 'finicky', 'slovenly', 'addlepated', 'nescient'];
+const insultAdjectives = [
+  'antiquated', 'asinine', 'banal', 'brazen', 'catty', 'churlish', 'clammy', 'contrary', 'daft', 'damned', 'deceitful', 'decrepit',
+  'deficient', 'degrading', 'deleterious', 'devoid', 'dim', 'dismal', 'disreputable', 'dopey', 'dreary', 'drunken', 'dubious',
+  'dysfunctional', 'fatuous', 'feckless', 'glib', 'grotesque', 'imbecilic', 'impertinent', 'indecorous', 'indiscreet', 'infantile',
+  'jejune', 'lurid', 'malevolent', 'misshapen', 'morbid', 'moribund', 'mundane', 'petulant', 'puerile', 'rambunctious', 'repugnant',
+  'truculent', 'unkempt', 'vainglorious', 'vapid', 'clingy', 'bitchy', 'thoughtless', 'callous', 'vain', 'patronizing', 'aloof',
+  'domineering', 'machiavellian', 'obstinate', 'cantankerous', 'big-headed', 'stubborn', 'tactless', 'possessive', 'resentful',
+  'cowardly', 'gullible', 'weak', 'weak-willed', 'sullen', 'touchy', 'finicky', 'slovenly', 'addlepated', 'nescient', 'sanctimonious',
+  'self-righteous', 'holier-than-thou', 'unctuous', 'stinky', 'smug', 'hypocritical', 'insincere', 'moralizing', 'disingenuous',
+  'phony', 'shifty', 'duplicitous', 'mendacious', 'faithless', 'disloyal', 'dissembling', 'dissimulating', 'devious', 'priggish',
+  'errant', 'lawless', 'revolting', 'repellent', 'repulsive', 'abhorrent', 'loathsome', 'detestable', 'horrendous', 'hideous',
+  'appalling', 'atrocious', 'vile', 'abominable', 'nauseating', 'uninviting', 'unpalatable', 'unappetizing', 'unsavory',
+  'distasteful', 'odious', 'rank', 'rancid', 'fetid', 'malodorous', 'vomitous', 'ghastly', 'horrid', 'gruesome', 'diabolical',
+  'putrid', 'grotty', 'beastly', 'skanky', 'mephitic', 'mephistophelian', 'fiendish', 'miasmic', 'olid', 'squalid', 'sordid',
+  'shabby', 'sleazy', 'sullied', 'rotten', 'defiled', 'putrefied', 'besmirched', 'feculent', 'scruffy', 'straggly', 'slatternly',
+  'slovenly', 'frowzy', 'dowdy'
+];
 
 async function getDefinition(word) {
   return await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
